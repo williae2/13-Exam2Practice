@@ -272,12 +272,13 @@ class Box(object):
         space = new_volume
         self.volume = space
         left_in = ''
-        for k in range(self.volume):
-            left_in = left_in + self.contents[k]
         left_out = ''
-        for k in range(len(self.contents)-self.volume, len(self.contents)):
-            left_out = left_out + self.contents[k]
-        self.contents = left_in
+        if len(self.contents) > new_volume:
+            for k in range(self.volume):
+                left_in = left_in + self.contents[k]
+            for k in range(self.volume, len(self.contents)):
+                left_out = left_out + self.contents[k]
+            self.contents = left_in
         return left_out
 
 
