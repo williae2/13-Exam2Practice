@@ -43,8 +43,8 @@ def main():
     run_test_append_string()
     run_test_double()
     run_test_shrink()
-#     run_test_double_then_shrink()
-#     run_test_reset()
+    run_test_double_then_shrink()
+  #  run_test_reset()
 #     run_test_steal()
 #     run_test_get_history()
 #     run_test_combined_box()
@@ -106,6 +106,12 @@ class Box(object):
         self.volume = volume
         if len(contents) > volume:
             self.contents = ''
+        self.content = contents
+        self.volumes = volume
+        if len(contents) > volume:
+            self.contents = ''
+
+
 
     def append_string(self, additional_contents):
         """
@@ -258,7 +264,7 @@ class Box(object):
           :type new_volume: int
         """
         # --------------------------------------------------------------
-        # TODO: 5. Implement and test this function.
+        # DONE: 5. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -335,6 +341,11 @@ class Box(object):
         #    DIFFICULTY:      5
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+        self.contents = self.double()
+        self.volume = self.shrink(new_volume)
+
+        return len(self.double())
+
 
     def reset(self):
         """
@@ -354,7 +365,8 @@ class Box(object):
         #    DIFFICULTY:      4
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
-
+        self.contents = self.content
+        self.volume = self.volumes
     def steal(self, other_box):
         """
         What comes in:
